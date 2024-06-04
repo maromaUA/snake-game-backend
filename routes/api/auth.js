@@ -8,7 +8,8 @@ const {
     registration,
     login,
     logout,
-    getCurrent
+    getCurrent,
+    changeRecord,
 } = require("../../controllers/auth")
 
 const authenticate = require("../../middlewares/authenticate");
@@ -18,5 +19,6 @@ router.post("/register", validateBody(registrationSchema), registration)
 router.post("/login", validateBody(loginSchema), login)
 router.post("/logout", authenticate, logout)
 router.get("/current", authenticate, getCurrent)
+router.patch("/changeRecord", authenticate, changeRecord)
 
 module.exports = router

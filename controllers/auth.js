@@ -51,6 +51,7 @@ const registration = async (req, res, next) => {
         user: {
           email: user.email,
           name: user.name,
+          record: user.record,
         },
       });
     } catch (error) {
@@ -67,16 +68,27 @@ const registration = async (req, res, next) => {
   };
 
   const getCurrent = async (req, res, next) => {
-    const { email, name } = req.user;
+    const { email, name, record } = req.user;
     res.json({
       email,
       name,
+      record
     });
   };
+
+  const changeRecord = async (req, res, next) => {
+    const {record} = req.body
+    const {_id} = req.user;
+    const user = await User.findByIdAndUpdate(_id, {record:record});
+    res.json({
+      record:user.record
+    })
+  }
 
   module.exports = {
     registration,
     login,
     logout,
-    getCurrent
+    getCurrent,
+    changeRecord,
   }
