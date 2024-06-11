@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 mongoose
   .connect("mongodb+srv://goodboi524826:QAZ123wsx@cluster0.ux4msdv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
   .then(() => {
-    app.listen(3001, () => {
+    app.listen(80, () => {
       console.log("Server running. Use our API on port: 3001");
     });
     console.log("Database connection successful");
